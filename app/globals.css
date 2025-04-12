@@ -1,0 +1,20 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Locomotive Scroll styles */
+[data-scroll-container] {
+    perspective: 1px;
+  }
+  
+  [data-scroll] {
+    transform-style: preserve-3d;
+    will-change: transform;
+  }
+  
+  .testimonial-swiper {
+    padding: 20px 0;
+    overflow: visible !important;
+  }
+  
+  /* ... rest of your styles ... */
