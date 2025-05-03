@@ -1,15 +1,14 @@
 'use client'
 
 import { Menu, X } from 'lucide-react'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
-import { motion } from "framer-motion";
-import GooeyNav from "./GooeyNav";
+import GooeyNav from './GooeyNav'
 
-const inter = Inter({ 
-  subsets: ["latin"],
+const inter = Inter({
+  subsets: ['latin'],
   variable: '--font-inter',
   display: 'swap',
 })
@@ -17,71 +16,81 @@ const inter = Inter({
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
 
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : 'auto'
+    return () => {
+      document.body.style.overflow = 'auto'
+    }
+  }, [isOpen])
+
   const navItems = [
     { label: "Home", href: "/" },
-    { label: "Portofolio", href: "/portfolio" },
+    { label: "Portfolio", href: "/portfolio" },
     { label: "Services", href: "/services" },
     { label: "Blog", href: "/blog" },
-  ];
+  ]
 
   return (
-    <nav className={`${inter.className} calm`}>
-  <div className="bg-[#f2f2f2] pt-5 md:pt-7">
-    <div className="text-white text-lg flex items-center h-20 font-medium justify-between w-[84%] mx-auto bg-[#0A0D17] rounded-full px-2 shadow-sm">
-      
-      {/* Ganti list manual dengan GooeyNav */}
-      <div className="hidden md:flex ml-8">
-        <GooeyNav items={navItems}
-        particleDistances={[100, 15]} // Nilai default [90, 10] - angka pertama untuk radius luar, kedua untuk radius dalam
-        particleR={310} // Nilai default 100 - mengatur seberapa jauh particle berputar
-        particleCount={20} 
-         />
+    <nav className={`${inter.className} calm relative z-50`}>
+      <div className="bg-[#f2f2f2] pt-4 md:pt-6">
+        <div className="flex items-center justify-between w-[95%] md:w-[92%] lg:w-[90%] mx-auto rounded-full px-3 md:px-4 lg:px-6 shadow-sm bg-[#0A0D17]
+          h-16 sm:h-20 md:h-24 text-white relative transition-all duration-300">
+
+          <Image
+            src="/logo nova tech vision.svg"
+            alt="Logo"
+            width={80}
+            height={80}
+            className="w-[50px] sm:w-[65px] md:w-[70px]"
+          />
+
+          <div className="hidden md:flex">
+            <GooeyNav
+              items={navItems}
+              particleDistances={[100, 15]}
+              particleR={310}
+              particleCount={20}
+            />
+          </div>
+
+          <div className="hidden md:block">
+            <Link
+              href="/consultation"
+              className="bg-[#F2F2F2] text-black text-xs md:text-sm lg:text-base px-4 md:px-3 lg:px-6 py-2 md:py-2.5 lg:py-3 rounded-full font-medium hover:bg-[#0A0D17] hover:text-[#0099FF] transition-all duration-200 flex items-center gap-1 md:gap-1.5 lg:gap-2 max-w-[180px]"
+            >
+              <Image src="/shopping-cart.svg" alt="Shopping Cart" width={18} height={18} />
+              <span className="whitespace-normal text-center leading-tight">Order Now</span>
+            </Link>
+          </div>
+
+          <button
+            className="md:hidden text-white z-50"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </div>
 
-      {/* Logo */}
-      <Link href="/" className="absolute left-1/2 transform -translate-x-1/2">
-        <Image src="./logo nova tech vision.svg" alt="Logo" width={100} height={100} />
-      </Link>
-
-      {/* Right Button */}
-      <div className="hidden md:block">
+      {/* Mobile Nav Overlay */}
+      <div
+        className={`fixed inset-0 bg-[#0A0D17] transition-transform duration-500 ease-in-out transform ${
+          isOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
+        } z-40 flex flex-col items-center pt-28 space-y-6 px-6 md:hidden`}
+      >
+        {navItems.map(({ label, href }) => (
+          <Link key={href} href={href} className="text-lg sm:text-xl font-medium text-white hover:text-[#0099FF] transition-all duration-300">
+            {label}
+          </Link>
+        ))}
         <Link
           href="/consultation"
-          className="bg-[#F2F2F2] text-black text-xl mr-0  px-12 py-5 rounded-full font-medium hover:bg-[#0A0D17] hover:text-[#0099FF] transition-colors duration-200 flex items-center gap-2"
+          className="bg-[#F2F2F2] text-black text-center px-5 py-3 rounded-full font-medium hover:bg-[#0A0D17] hover:text-[#0099FF] transition flex items-center gap-2 text-base sm:text-lg"
         >
-          <Image src="./shopping-cart.svg" alt="Shopping Cart" width={20} height={20} className="w-5 h-5" />
+          <Image src="/shopping-cart.svg" alt="Shopping Cart" width={20} height={20} />
           Free Consultation
         </Link>
       </div>
-
-      {/* Mobile Hamburger */}
-      <button
-        className="md:hidden text-white hover:text-[#0099FF] transition-colors duration-200"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        {isOpen ? <X /> : <Menu />}
-      </button>
-    </div>
-  </div>
-
-  {/* Mobile Menu tetap pakai list manual */}
-  {isOpen && (
-    <div className="md:hidden mt-4 space-y-2 bg-[#0A0D17] rounded-lg p-4 shadow-sm">
-      <Link href="/" className="block text-white hover:text-[#0099FF] transition-colors duration-200">Home</Link>
-      <Link href="/portfolio" className="block text-white hover:text-[#0099FF] transition-colors duration-200">Portfolio</Link>
-      <Link href="/services" className="block text-white hover:text-[#0099FF] transition-colors duration-200">Services</Link>
-      <Link href="/blog" className="block text-white hover:text-[#0099FF] transition-colors duration-200">Blog</Link>
-      <Link
-        href="/consultation"
-        className="block bg-[#F2F2F2] text-black text-center px-4 py-2 rounded-full font-medium mt-2 hover:bg-[#0A0D17] hover:text-[#0099FF] transition-colors duration-200 flex items-center justify-center gap-2"
-      >
-        <Image src="./shopping-cart.svg" alt="Shopping Cart" width={20} height={20} className="w-5 h-5" />
-        Free Consultation
-      </Link>
-    </div>
-  )}
-</nav>
-
-
+    </nav>
   )
 }

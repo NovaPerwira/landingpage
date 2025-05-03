@@ -1,52 +1,50 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import Image from "next/image"
-import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
+import "./HoverSection.css"
+
+const featuredProject = {
+  title: "Real Estate Website",
+  image: "/services/image.png",
+}
 
 const portfolioItems = [
   {
-    id: "tab1",
-    title: "Tab 1",
+    id: "1",
+    title: "Landing Page",
     image: "/services/image.png",
+    hoverImage: "/services/image2.png",
   },
   {
-    id: "tab2",
-    title: "Tab 2",
+    id: "2",
+    title: "E-Commerce",
     image: "/services/image.png",
+    hoverImage: "/services/image2.png",
   },
   {
-    id: "tab3",
-    title: "Tab 3",
+    id: "3",
+    title: "School Website",
     image: "/services/image.png",
-  },
-  {
-    id: "tab4",
-    title: "Tab 4",
-    image: "/services/image.png",
+    hoverImage: "/services/image2.png",
   },
 ]
 
 export default function PortfolioSection() {
-  const [activeTab, setActiveTab] = useState("tab1")
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
+  const cursorRef = useRef<HTMLDivElement>(null)
+  const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
 
   const containerVariants = {
     hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.2 }
-    }
+    visible: { opacity: 1, transition: { staggerChildren: 0.3 } },
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 }
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
   }
 
   return (
@@ -55,78 +53,115 @@ export default function PortfolioSection() {
       variants={containerVariants}
       initial="hidden"
       animate={inView ? "visible" : "hidden"}
-      className="w-full py-20 bg-gray-50"
+      className="w-full py-20 relative"
     >
-      <div className="container mx-[5%] px-4 w-full">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-12">
         {/* Header */}
-        <motion.div variants={itemVariants} className="text-center mb-12">
-          <h2 className="text-5xl font-normal mb-4">Website Design Portfolio</h2>
-          <p className="text-gray-600 max-w-2xl mx-auto mb-8">
+        <motion.div variants={itemVariants} className="text-center mb-12 px-2">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-4 leading-tight">
+            Website Design Portfolio
+          </h2>
+          <p className="text-gray-600 max-w-2xl mx-auto mb-8 text-sm sm:text-base md:text-lg">
             Discover our portfolio of custom website design projects built for businesses,
             schools, and online stores. Each site is responsive, SEO-optimized, and tailored
             to our clients' goals.
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
-            className="bg-black text-white px-8 py-3 rounded-full"
+            className="bg-black text-white px-8 py-3 rounded-full text-sm sm:text-base"
           >
             Explore
           </motion.button>
         </motion.div>
 
-        {/* Main Portfolio Display */}
-        <div className="space-y-8">
-          {/* Featured Project */}
-          <motion.div variants={itemVariants} className="relative rounded-3xl overflow-hidden">
-            {/* Navigation Tabs */}
-            <div className="absolute top-6 left-6 z-10 flex space-x-6 bg-white/90 backdrop-blur-sm rounded-full p-4">
-              {['Title 1', 'Title 2', 'Title 3', 'Title 4'].map((title, index) => (
-                <div key={index} className="flex flex-col items-center">
-                  <h3 className="text-sm font-medium">{title}</h3>
-                  <p className="text-xs text-gray-500">Lorem ipsum dolor sit amet, consectetur</p>
-                </div>
-              ))}
-            </div>
-            <Image
-              src="/services/image.png" // Update with your image path
-              alt="Featured Project"
-              width={1200}
-              height={600}
-              className="w-full h-[500px] object-cover"
-            />
-          </motion.div>
-
-          {/* Portfolio Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <motion.div variants={itemVariants} className="rounded-3xl overflow-hidden">
-              <Image
-                src="/services/image.png" // Update with your image path
-                alt="Portfolio Project 1"
-                width={400}
-                height={300}
-                className="w-full h-[300px] object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </motion.div>
-            <motion.div variants={itemVariants} className="rounded-3xl overflow-hidden">
-              <Image
-                src="/services/image.png" // Update with your image path
-                alt="Portfolio Project 2"
-                width={400}
-                height={300}
-                className="w-full h-[300px] object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </motion.div>
-            <motion.div variants={itemVariants} className="rounded-3xl overflow-hidden">
-              <Image
-                src="/services/image.png" // Update with your image path
-                alt="Portfolio Project 3"
-                width={400}
-                height={300}
-                className="w-full h-[300px] object-cover hover:scale-105 transition-transform duration-300"
-              />
-            </motion.div>
+        {/* Featured Project */}
+        <motion.div
+          variants={itemVariants}
+          className="relative cursor-none rounded-3xl overflow-hidden mb-16"
+          onMouseEnter={() => setHoveredIndex(-1)}
+          onMouseLeave={() => setHoveredIndex(null)}
+          onMouseMove={(e) => {
+            const parent = e.currentTarget.getBoundingClientRect()
+            const x = e.clientX - parent.left
+            const y = e.clientY - parent.top
+            if (cursorRef.current && hoveredIndex === -1) {
+              cursorRef.current.style.left = `${x}px`
+              cursorRef.current.style.top = `${y}px`
+            }
+          }}
+        >
+          <div className="absolute transform -translate-x-1/2 top-6 left-1/2 z-10 flex space-x-6 bg-white/90 backdrop-blur-md rounded-full p-4 shadow-lg">
+            <h3 className="text-lg sm:text-xl md:text-2xl font-medium">
+              {featuredProject.title}
+            </h3>
           </div>
-        </div>
+
+          <Image
+            src={featuredProject.image}
+            alt="Featured Project"
+            width={1200}
+            height={600}
+            className="w-full h-[300px] md:h-[400px] lg:h-[500px] object-cover transition-all"
+          />
+
+          {hoveredIndex === -1 && (
+            <div ref={cursorRef} className="custom-cursor-button">
+              VIEW <span className="arrow">↓</span>
+            </div>
+          )}
+        </motion.div>
+
+        {/* Portfolio Grid - 1:1 aspect */}
+        <motion.div
+          variants={itemVariants}
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6"
+        >
+          {portfolioItems.map((item, index) => {
+            const isHovered = hoveredIndex === index
+            const imageSrc = isHovered ? item.hoverImage : item.image
+
+            return (
+              <motion.div
+                key={item.id}
+                className="hover-container cursor-none relative rounded-3xl overflow-hidden aspect-square"
+                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseLeave={() => setHoveredIndex(null)}
+                onMouseMove={(e) => {
+                  const parent = e.currentTarget.getBoundingClientRect()
+                  const x = e.clientX - parent.left
+                  const y = e.clientY - parent.top
+                  if (cursorRef.current && isHovered) {
+                    cursorRef.current.style.left = `${x}px`
+                    cursorRef.current.style.top = `${y}px`
+                  }
+                }}
+              >
+                <motion.div
+                  initial={{ scale: 1, opacity: 1 }}
+                  animate={{
+                    scale: isHovered ? 1.05 : 1,
+                    opacity: isHovered ? 0.9 : 1,
+                  }}
+                  transition={{ duration: 0.4 }}
+                  className="w-full h-full"
+                >
+                  <Image
+                    src={imageSrc}
+                    alt={`Portfolio Project ${index + 1}`}
+                    fill
+                    className="object-cover"
+                  />
+                </motion.div>
+
+                {isHovered && (
+                  <div ref={cursorRef} className="custom-cursor-button">
+                    VIEW <span className="arrow">↓</span>
+                  </div>
+                )}
+              </motion.div>
+            )
+          })}
+        </motion.div>
       </div>
     </motion.section>
   )

@@ -1,115 +1,68 @@
-"use client"
-
-import { useState } from "react"
-import { motion } from "framer-motion"
-import { useInView } from "react-intersection-observer"
-import { ChevronDown, ChevronUp } from "lucide-react"
+'use client';
+import { useState } from 'react';
+import { ChevronRight } from 'lucide-react';
 
 const faqs = [
   {
-    question: "What services do you offer?",
-    answer:
-      "We offer a comprehensive range of web design and development services including responsive website design, e-commerce solutions, custom web applications, SEO optimization, and ongoing maintenance and support.",
+    question: 'What is a Payment Gateway?',
+    answer: 'A payment gateway is a technology that captures and transfers payment data from the customer to the acquiring bank.',
   },
   {
-    question: "How long does it take to complete a website?",
+    question: 'Do I need to pay to Instapay even when there is no transaction going on in my business?',
     answer:
-      "The timeline for website completion varies depending on the complexity and scope of the project. A simple website might take 2-4 weeks, while more complex projects can take 2-3 months or more. We'll provide you with a detailed timeline during our initial consultation.",
+      'No, you do not need to pay Instapay where there is no transaction happening. With one of the lowest transaction charges in the industry, pay only when you get paid!',
   },
   {
-    question: "What is your design process?",
-    answer:
-      "Our design process includes discovery and planning, wireframing and prototyping, design and development, testing and refinement, and finally, launch and support. We involve our clients at every stage to ensure the final product meets their expectations.",
+    question: 'What platforms does ACME payment gateway support?',
+    answer: 'ACME supports all major e-commerce platforms including Shopify, WooCommerce, Magento, and custom integrations.',
   },
   {
-    question: "Do you offer website maintenance services?",
-    answer:
-      "Yes, we offer ongoing maintenance services to keep your website secure, up-to-date, and performing optimally. Our maintenance packages include regular updates, security monitoring, performance optimization, and technical support.",
+    question: 'Does ACME provide international payments support?',
+    answer: 'Yes, ACME provides international payment processing in multiple currencies and languages.',
   },
   {
-    question: "How much does a website cost?",
-    answer:
-      "The cost of a website depends on various factors such as complexity, features, and scope. We offer customized quotes based on your specific requirements. Contact us for a free consultation and quote.",
+    question: 'Is there any setup fee or annual maintenance fee that I need to pay regularly?',
+    answer: 'No setup or annual maintenance fees. You only pay a small fee per transaction.',
   },
-]
+];
 
 export default function FAQSection() {
-  const [openIndex, setOpenIndex] = useState<number | null>(null)
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
-
-  const toggleFAQ = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index)
-  }
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  }
+  const [selectedIndex, setSelectedIndex] = useState(0);
 
   return (
-    <motion.section
-      ref={ref}
-      variants={containerVariants}
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      className="w-full py-16 bg-white"
-    >
-      <div className="container px-4 md:px-6">
-        <motion.div variants={itemVariants} className="text-center mb-12">
-          <h2 className="text-3xl font-bold tracking-tighter mb-4">Frequently Asked Questions</h2>
-          <p className="text-gray-500 max-w-2xl mx-auto">
-            Find answers to common questions about our web design services and process.
-          </p>
-        </motion.div>
-
-        <div className="max-w-3xl mx-auto">
-          {faqs.map((faq, index) => (
-            <motion.div
-              key={index}
-              variants={itemVariants}
-              className={`mb-4 border-b border-gray-200 pb-4 ${index === 0 ? "border-t pt-4" : ""}`}
-            >
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
+      <h2 className="text-4xl md:text-6xl font-bold mb-12 text-center">
+        Frequently Asked Questions
+      </h2>
+      <div className="p-4 sm:p-8 max-w-6xl w-full flex flex-col md:flex-row gap-6">
+        {/* Left side - FAQ List */}
+        <div className="w-full md:w-1/2">
+          <div className="flex flex-col space-y-4">
+            {faqs.map((faq, index) => (
               <button
-                onClick={() => toggleFAQ(index)}
-                className="flex justify-between items-center w-full text-left focus:outline-none"
+                key={index}
+                onClick={() => setSelectedIndex(index)}
+                className={`flex justify-between items-center text-left px-4 py-3 rounded-md border border-spacing-1 transition-colors duration-200 ${
+                  index === selectedIndex
+                    ? 'bg-violet-100 text-black bg-slate-200'
+                    : 'bg-white text-gray-700 border-gray-200 hover:bg-gray-50'
+                }`}
               >
-                <h3 className="text-lg font-medium text-gray-900">{faq.question}</h3>
-                <div className="ml-2 flex-shrink-0">
-                  {openIndex === index ? (
-                    <ChevronUp className="h-5 w-5 text-purple-600" />
-                  ) : (
-                    <ChevronDown className="h-5 w-5 text-gray-400" />
-                  )}
-                </div>
+                <span>{faq.question}</span>
+                <ChevronRight className="w-4 h-4" />
               </button>
-              <motion.div
-                initial={{ height: 0, opacity: 0 }}
-                animate={{
-                  height: openIndex === index ? "auto" : 0,
-                  opacity: openIndex === index ? 1 : 0,
-                }}
-                transition={{ duration: 0.3 }}
-                className="overflow-hidden"
-              >
-                <p className="mt-4 text-gray-600">{faq.answer}</p>
-              </motion.div>
-            </motion.div>
-          ))}
+            ))}
+          </div>
+        </div>
+
+        {/* Right side - Answer */}
+        <div className="w-full pt-6 md:pt-16 bg-gray-50 rounded-md p-6 shadow-sm md:ml-6 mt-4 md:mt-0">
+          <h3 className="text-lg font-semibold text-gray-900 mb-2">
+            {faqs[selectedIndex].question}
+          </h3>
+          <p className="text-gray-700">{faqs[selectedIndex].answer}</p>
         </div>
       </div>
-    </motion.section>
-  )
+    </div>
+  );
 }

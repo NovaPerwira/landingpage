@@ -3,12 +3,19 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { Check } from "lucide-react"
 import { getServices } from "@/lib/api"
+import HeroSection from "../../components/services/HeroSection";
+import OurService from "../../components/OurService"
+
 
 export default async function ServicesPage() {
   const services = await getServices()
 
   return (
     <div className="flex flex-col min-h-screen">
+      <HeroSection />
+
+      <OurService />
+
       {/* Hero Section */}
       <section className="w-full py-12 md:py-24 bg-gradient-to-r from-black to-gray-900">
         <div className="container px-4 md:px-6">
@@ -30,7 +37,7 @@ export default async function ServicesPage() {
             </div>
             <div className="relative h-[300px] lg:h-[400px]">
               <Image
-                src="/images/services-hero.png"
+                src="/images/HeroService.png"
                 alt="Technology Services"
                 fill
                 className="object-cover rounded-lg"

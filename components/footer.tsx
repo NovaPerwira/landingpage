@@ -1,158 +1,70 @@
-"use client"
-
-import Link from "next/link"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Facebook, Twitter, Instagram, Linkedin, Mail, Phone, MapPin } from "lucide-react"
-import { motion } from "framer-motion"
-import { useInView } from "react-intersection-observer"
+import { FaLinkedinIn, FaFacebookF, FaTwitter } from 'react-icons/fa';
+import GooeyNav from './GooeyNav';
 
 export default function Footer() {
-  const [ref, inView] = useInView({
-    triggerOnce: true,
-    threshold: 0.1,
-  })
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2,
-      },
-    },
-  }
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  }
+  const navItems = [
+    { label: "Home", href: "/" },
+    { label: "Portofolio", href: "/portfolio" },
+    { label: "Services", href: "/services" },
+    { label: "Blog", href: "/blog" },
+  ];
 
   return (
-    <motion.footer
-      ref={ref}
-      variants={containerVariants}
-      initial="hidden"
-      animate={inView ? "visible" : "hidden"}
-      className="bg-black text-white"
-    >
-      <div className="container py-12 md:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-          <motion.div variants={itemVariants} className="col-span-1 md:col-span-1">
-            <Image
-              src="/images/logo-white.png"
-              alt="Logo"
-              width={120}
-              height={40}
-              className="h-8 w-auto mb-4"
-              onError={(e) => {
-                e.currentTarget.src = "/images/logo.png"
-              }}
+    <footer className="bg-[#0F0F1C] mx-[8%] rounded-t-[5rem] text-white px-6 py-12 md:px-16">
+      <div className="max-w-7xl mx-auto flex flex-col gap-10">
+        {/* TOP ROW: Logo, Nav, Sosmed */}
+        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+          {/* Logo */}
+          <h1 className="text-2xl font-bold">🌟 Positivus</h1>
+
+          {/* Nav Menu */}
+          <div className="hidden md:flex ml-8">
+            <GooeyNav items={navItems}
+            particleDistances={[100, 15]} // Nilai default [90, 10] - angka pertama untuk radius luar, kedua untuk radius dalam
+            particleR={310} // Nilai default 100 - mengatur seberapa jauh particle berputar
+            particleCount={20} 
             />
-            <p className="text-gray-400 mb-4">
-              We create stunning, functional websites that help businesses grow and succeed in the digital world.
-            </p>
-            <div className="flex space-x-4">
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Facebook className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Twitter className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Instagram className="h-5 w-5" />
-              </Link>
-              <Link href="#" className="text-gray-400 hover:text-white transition-colors">
-                <Linkedin className="h-5 w-5" />
-              </Link>
-            </div>
-          </motion.div>
+          </div>
 
-          <motion.div variants={itemVariants} className="col-span-1">
-            <h3 className="text-lg font-semibold mb-4">Services</h3>
-            <ul className="space-y-2">
-              <li>
-                <Link href="/services" className="text-gray-400 hover:text-white transition-colors">
-                  Web Design
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="text-gray-400 hover:text-white transition-colors">
-                  E-Commerce
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="text-gray-400 hover:text-white transition-colors">
-                  SEO Optimization
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="text-gray-400 hover:text-white transition-colors">
-                  Web Development
-                </Link>
-              </li>
-              <li>
-                <Link href="/services" className="text-gray-400 hover:text-white transition-colors">
-                  Maintenance
-                </Link>
-              </li>
-            </ul>
-          </motion.div>
-
-          <motion.div variants={itemVariants} className="col-span-1">
-            <h3 className="text-lg font-semibold mb-4">Contact</h3>
-            <ul className="space-y-4">
-              <li className="flex items-start">
-                <MapPin className="h-5 w-5 text-gray-400 mr-2 mt-0.5" />
-                <span className="text-gray-400">123 Design Street, Creative City, 10001</span>
-              </li>
-              <li className="flex items-center">
-                <Phone className="h-5 w-5 text-gray-400 mr-2" />
-                <span className="text-gray-400">(123) 456-7890</span>
-              </li>
-              <li className="flex items-center">
-                <Mail className="h-5 w-5 text-gray-400 mr-2" />
-                <span className="text-gray-400">info@novatech.com</span>
-              </li>
-            </ul>
-          </motion.div>
-
-          <motion.div variants={itemVariants} className="col-span-1">
-            <h3 className="text-lg font-semibold mb-4">Newsletter</h3>
-            <p className="text-gray-400 mb-4">Subscribe to our newsletter for the latest updates and offers.</p>
-            <div className="flex flex-col space-y-2">
-              <Input
-                type="email"
-                placeholder="Your email"
-                className="bg-gray-800 border-gray-700 text-white placeholder:text-gray-500"
-              />
-              <Button className="bg-white text-black hover:bg-gray-200">Subscribe</Button>
-            </div>
-          </motion.div>
+          {/* Sosmed Icons */}
+          <div className="flex gap-4 text-lg">
+            <a href="#"><FaLinkedinIn /></a>
+            <a href="#"><FaFacebookF /></a>
+            <a href="#"><FaTwitter /></a>
+          </div>
         </div>
 
-        <motion.div
-          variants={itemVariants}
-          className="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center"
-        >
-          <p className="text-gray-400 text-sm mb-4 md:mb-0">
-            © {new Date().getFullYear()} Nova Tech. All rights reserved.
-          </p>
-          <div className="flex space-x-6">
-            <Link href="/terms" className="text-gray-400 hover:text-white text-sm transition-colors">
-              Terms & Conditions
-            </Link>
-            <Link href="/privacy" className="text-gray-400 hover:text-white text-sm transition-colors">
-              Privacy Policy
-            </Link>
-            <Link href="/sitemap" className="text-gray-400 hover:text-white text-sm transition-colors">
-              Sitemap
-            </Link>
+        {/* MIDDLE ROW: Contact & Subscribe */}
+        <div className="flex flex-col md:flex-row md:items-start md:gap-8 justify-between">
+
+          {/* Contact Info */}
+          <div className="space-y-4 ">
+            <span className="inline-block px-3 py-1 bg-blue-600 rounded-full text-sm font-semibold">Contact us:</span>
+            <ul className="flex-1 text-base space-y-1">
+              <li>Email: kavushion@gmail.com</li>
+              <li>Phone: 555-567-8901</li>
+              <li>Address: 1234 Main St<br />Moonstone City, Stardust State 12345</li>
+            </ul>
           </div>
-        </motion.div>
+
+          {/* Subscribe Form */}
+          <div className="flex-1 py-12 bg-[#1C1C2E] rounded-lg p-4 flex flex-col md:flex-row items-end gap-3 md:w-[500px] w-full max-w-xl">
+
+            <input
+              type="email"
+              placeholder="Email"
+              className="w-full px-4 py-2 rounded-md bg-transparent border text-white placeholder-gray-400 focus:outline-none"
+            />
+            <button className="bg-blue-500 w-full text-white px-4 py-2 rounded-md hover:bg-blue-600 transition">Subscribe to news</button>
+          </div>
+        </div>
+
+        {/* BOTTOM ROW */}
+        <div className="border-t border-gray-600 pt-6 flex flex-col md:flex-row justify-between text-sm text-gray-400">
+          <p>© 2025 Positivus. All Rights Reserved.</p>
+          <a href="#" className="hover:underline mt-2 md:mt-0">Privacy Policy</a>
+        </div>
       </div>
-    </motion.footer>
-  )
+    </footer>
+  );
 }

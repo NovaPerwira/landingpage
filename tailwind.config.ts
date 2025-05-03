@@ -1,6 +1,7 @@
 import type { Config } from "tailwindcss"
 
 const config = {
+  
   darkMode: ["class"],
   content: [
     "./pages/**/*.{ts,tsx}",
@@ -19,9 +20,13 @@ const config = {
       },
     },
     extend: {
+        
+      
       fontFamily: {
         sans: ['var(--font-lato)'],
         heading: ['var(--font-inter)'],
+        source: ['var(--font-source-sans)'],
+        
       },
       fontSize: {
         'clamp': 'clamp(3rem, 6vw, 4.5rem)',

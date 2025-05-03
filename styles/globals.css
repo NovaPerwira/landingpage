@@ -92,3 +92,23 @@ body {
     @apply bg-background text-foreground;
   }
 }
+
+
+.custom-cursor-button {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+  background-color: white;
+  color: black;
+  padding: 8px 16px;
+  border-radius: 9999px;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.arrow {
+  font-size: 16px;
+}

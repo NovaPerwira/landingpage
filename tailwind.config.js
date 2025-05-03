@@ -7,6 +7,9 @@ module.exports = {
   ],
   theme: {
     extend: {
+      screens: {
+        'xs': {'max': '425px'}, // Breakpoint untuk ≤400px
+      },
       colors: {
         calm: {
           background: '#F5F7FA',
