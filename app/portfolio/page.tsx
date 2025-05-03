@@ -4,7 +4,7 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { getPortfolioProjects } from "@/lib/api"
 import PortfolioSection from "@/components/portfolio-section"
-import Pricing from "../../components/pricing"
+
 import TestimonialSection from "@/components/testimonial-section"
 import { CallToAction } from "@/components/CTA"
 import { ContactSection } from "@/components/ContactSection"
@@ -46,7 +46,7 @@ const projects = [
 
 
 
-      <Pricing />
+      
       <TestimonialSection />
       <CallToAction />
       <ContactSection />
