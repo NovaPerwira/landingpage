@@ -72,7 +72,7 @@ export default function BusinessSection() {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className="w-full pb-16 mt-[-300px]"
+      className="w-full pb-16 "
     >
       <div className="container px-4 md:px-6 mx-auto max-w-7xl">
         <motion.div variants={itemVariants} className="mb-16">

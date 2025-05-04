@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 import { useInView } from "react-intersection-observer";
 import { useEffect, useState } from "react";
-import Threads from "../threads";
+
 
 const containerVariants = {
   hidden: { opacity: 0, y: 40 },
@@ -30,16 +30,10 @@ export default function HeroSection() {
       variants={containerVariants}
       initial="hidden"
       animate={heroInView ? "visible" : "hidden"}
-      className="w-full bg-[#f9f9f9] relative overflow-hidden py-20 px-4 md:px-16"
+      className="w-full  relative overflow-hidden py-20 px-4 md:px-16"
     >
       {/* Floating Left Element */}
-      <motion.div
-        animate={{ y: [-20, 0, -20], x: [-5, 5, -5] }}
-        transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute left-[-20px] top-[-150px] xs:top-[-120px] lg:top-[-250px] w-[300px] xs:w-[400px] lg:w-[600px] opacity-85"
-      >
-        <Image src="/novatechv-elemen.svg" alt="Element" width={600} height={600} />
-      </motion.div>
+      
 
       {/* Floating Right Element */}
       <motion.div
@@ -77,12 +71,7 @@ export default function HeroSection() {
           />
         </div>
       </div>
-      <div style={{ width: 'full', top: '-250px', height: '600px', marginLeft: '-200vh', marginBottom: '-100px', position: 'relative' }}>
-                <Threads
-                  
-                  enableMouseInteraction={false}
-                />
-              </div>
+     
     </motion.section>
   );
 }
