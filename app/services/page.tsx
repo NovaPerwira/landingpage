@@ -7,6 +7,7 @@ import HeroSection from "../../components/services/HeroSection";
 import OurService from "../../components/OurService"
 import Pricing from "@/components/Pricing"
 import TestimonialSection from "@/components/testimonial-section"
+import Timeline from "@/components/Timeline"
 import { CallToAction } from "@/components/CTA"
 export default async function ServicesPage() {
   const services = await getServices()
@@ -16,6 +17,7 @@ export default async function ServicesPage() {
       <HeroSection />
 
       <OurService />
+      < Timeline />
       < Pricing />
       < CallToAction />
       < TestimonialSection/>

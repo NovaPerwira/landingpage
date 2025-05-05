@@ -20,12 +20,11 @@ uniform vec3 uColor;
 uniform float uAmplitude;
 uniform float uDistance;
 uniform vec2 uMouse;
+uniform float uLineCount;
+uniform float uLineWidth;
+uniform float uLineBlur;
 
 #define PI 3.1415926538
-
-const int u_line_count = 40;
-const float u_line_width = 7.0;
-const float u_line_blur = 10.0;
 
 float Perlin2D(vec2 P) {
     vec2 Pi = floor(P);
@@ -52,13 +51,12 @@ float pixel(float count, vec2 resolution) {
     return (1.0 / max(resolution.x, resolution.y)) * count;
 }
 
-float lineFn(vec2 st, float width, float perc, float offset, vec2 mouse, float time, float amplitude, float distance) {
+float lineFn(vec2 st, float width, float perc, float offset, vec2 mouse, float time, float amplitude, float distance, float blurStrength) {
     float split_offset = (perc * 0.4);
     float split_point = 0.1 + split_offset;
 
     float amplitude_normal = smoothstep(split_point, 0.7, st.x);
-    float amplitude_strength = 0.5;
-    float finalAmplitude = amplitude_normal * amplitude_strength
+    float finalAmplitude = amplitude_normal * 0.5
                            * amplitude * (1.0 + (mouse.y - 0.5) * 0.2);
 
     float time_scaled = time / 10.0 + (mouse.x - 0.5) * 1.0;
@@ -73,14 +71,14 @@ float lineFn(vec2 st, float width, float perc, float offset, vec2 mouse, float t
     float y = 0.5 + (perc - 0.5) * distance + xnoise / 2.0 * finalAmplitude;
 
     float line_start = smoothstep(
-        y + (width / 2.0) + (u_line_blur * pixel(1.0, iResolution.xy) * blur),
+        y + (width / 2.0) + (blurStrength * pixel(1.0, iResolution.xy) * blur),
         y,
         st.y
     );
 
     float line_end = smoothstep(
         y,
-        y - (width / 2.0) - (u_line_blur * pixel(1.0, iResolution.xy) * blur),
+        y - (width / 2.0) - (blurStrength * pixel(1.0, iResolution.xy) * blur),
         st.y
     );
 
@@ -95,17 +93,19 @@ void mainImage(out vec4 fragColor, in vec2 fragCoord) {
     vec2 uv = fragCoord / iResolution.xy;
 
     float line_strength = 1.0;
-    for (int i = 0; i < u_line_count; i++) {
-        float p = float(i) / float(u_line_count);
+    for (int i = 0; i < 100; i++) {
+        if (float(i) >= uLineCount) break;
+        float p = float(i) / uLineCount;
         line_strength *= (1.0 - lineFn(
             uv,
-            u_line_width * pixel(1.0, iResolution.xy) * (1.0 - p),
+            uLineWidth * pixel(1.0, iResolution.xy) * (1.0 - p),
             p,
             (PI * 1.0) * p,
             uMouse,
             iTime,
             uAmplitude,
-            uDistance
+            uDistance,
+            uLineBlur
         ));
     }
 
@@ -122,6 +122,9 @@ const Threads = ({
   color = [1, 1, 1],
   amplitude = 1.4,
   distance = 0.1,
+  lineCount = 15,
+  lineWidth = 7.0,
+  lineBlur = 10.0,
   enableMouseInteraction = false,
   ...rest
 }) => {
@@ -145,72 +148,66 @@ const Threads = ({
       fragment: fragmentShader,
       uniforms: {
         iTime: { value: 0 },
-        iResolution: {
-          value: new Color(
-            gl.canvas.width,
-            gl.canvas.height,
-            gl.canvas.width / gl.canvas.height
-          ),
-        },
+        iResolution: { value: new Float32Array([1, 1, 1]) },
         uColor: { value: new Color(...color) },
         uAmplitude: { value: amplitude },
         uDistance: { value: distance },
         uMouse: { value: new Float32Array([0.5, 0.5]) },
+        uLineCount: { value: lineCount },
+        uLineWidth: { value: lineWidth },
+        uLineBlur: { value: lineBlur },
       },
     });
 
     const mesh = new Mesh(gl, { geometry, program });
 
-    function resize() {
+    const resize = () => {
       const { clientWidth, clientHeight } = container;
       renderer.setSize(clientWidth, clientHeight);
-      program.uniforms.iResolution.value.r = clientWidth;
-      program.uniforms.iResolution.value.g = clientHeight;
-      program.uniforms.iResolution.value.b = clientWidth / clientHeight;
-    }
+      program.uniforms.iResolution.value[0] = clientWidth;
+      program.uniforms.iResolution.value[1] = clientHeight;
+      program.uniforms.iResolution.value[2] = clientWidth / clientHeight;
+    };
     window.addEventListener("resize", resize);
     resize();
 
     let currentMouse = [0.5, 0.5];
     let targetMouse = [0.5, 0.5];
 
-    function handleMouseMove(e) {
+    const handleMouseMove = (e) => {
       const rect = container.getBoundingClientRect();
       const x = (e.clientX - rect.left) / rect.width;
       const y = 1.0 - (e.clientY - rect.top) / rect.height;
       targetMouse = [x, y];
-    }
-    function handleMouseLeave() {
+    };
+
+    const handleMouseLeave = () => {
       targetMouse = [0.5, 0.5];
-    }
+    };
+
     if (enableMouseInteraction) {
       container.addEventListener("mousemove", handleMouseMove);
       container.addEventListener("mouseleave", handleMouseLeave);
     }
 
-    function update(t) {
+    const update = (t) => {
       if (enableMouseInteraction) {
         const smoothing = 0.05;
         currentMouse[0] += smoothing * (targetMouse[0] - currentMouse[0]);
         currentMouse[1] += smoothing * (targetMouse[1] - currentMouse[1]);
         program.uniforms.uMouse.value[0] = currentMouse[0];
         program.uniforms.uMouse.value[1] = currentMouse[1];
-      } else {
-        program.uniforms.uMouse.value[0] = 0.5;
-        program.uniforms.uMouse.value[1] = 0.5;
       }
-      program.uniforms.iTime.value = t * 0.001;
 
+      program.uniforms.iTime.value = t * 0.001;
       renderer.render({ scene: mesh });
       animationFrameId.current = requestAnimationFrame(update);
-    }
+    };
     animationFrameId.current = requestAnimationFrame(update);
 
     return () => {
-      if (animationFrameId.current)
-        cancelAnimationFrame(animationFrameId.current);
+      cancelAnimationFrame(animationFrameId.current);
       window.removeEventListener("resize", resize);
-
       if (enableMouseInteraction) {
         container.removeEventListener("mousemove", handleMouseMove);
         container.removeEventListener("mouseleave", handleMouseLeave);
@@ -218,7 +215,7 @@ const Threads = ({
       if (container.contains(gl.canvas)) container.removeChild(gl.canvas);
       gl.getExtension("WEBGL_lose_context")?.loseContext();
     };
-  }, [color, amplitude, distance, enableMouseInteraction]);
+  }, [color, amplitude, distance, lineCount, lineWidth, lineBlur, enableMouseInteraction]);
 
   return <div ref={containerRef} className="w-full h-full relative" {...rest} />;
 };

@@ -160,21 +160,7 @@ export default function Home() {
           />
         </motion.div>
 
-        {/* Right Floating Element */}
-        <motion.div
-          animate={{ y: [0, -20, 0], x: [5, -5, 5] }}
-          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-          className="absolute right-0 opacity-85 top-[-120px] 
-            xs:top-[-150px]  lg:top-[-220px] 
-             xs:block w-[250px] xs:w-[400px]"
-        >
-          <Image 
-            src="/novatechv-elemen2.svg" 
-            alt="Novatech Element" 
-            width={500} 
-            height={500} 
-          />
-        </motion.div>
+        
 
         {/* Content Container */}
         <div className="flex flex-col sm:flex-row px-4 sm:px-6  gap-6 pt-12 justify-center mx-auto max-w-7xl sm:pt-16 mt-36 py-20 items-center relative z-10">
@@ -214,10 +200,16 @@ export default function Home() {
         </div>
         
 
-        <div style={{ width: 'full', top: '-250px', height: '600px', marginLeft: '-200vh', marginBottom: '-100px', position: 'relative' }}>
+        <div style={{ top: '-250px', height: '300px', marginLeft: '-200vh', marginBottom: '-100px', position: 'relative', overflow:"hidden"}}>
           <Threads
-            
-            enableMouseInteraction={false}
+              color={[0.2, 0.6, 1.0]}
+              amplitude={1.8}
+              distance={0.2}
+              lineCount={20}
+              lineWidth={8.0}
+              lineBlur={12.0}
+              enableMouseInteraction={true}
+           
           />
         </div>
       </motion.section>
@@ -228,7 +220,7 @@ export default function Home() {
         variants={containerVariants}
         initial="hidden"
         animate={servicesInView ? "visible" : "hidden"}
-        className="w-full pb-16 mt-[-300px]"
+        className="w-full pb-16 mt-[0px]"
       >
         <div className="container px-4 md:px-6 mx-auto max-w-7xl">
           <motion.div variants={itemVariants} className="mb-16">
