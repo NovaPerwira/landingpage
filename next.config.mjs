@@ -1,3 +1,8 @@
+import createNextIntlPlugin from 'next-intl/plugin';
+
+/** Lokasi file i18n.ts */
+const withNextIntl = createNextIntlPlugin('./i18n.ts');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   eslint: {
@@ -17,8 +22,8 @@ const nextConfig = {
     return config;
   },
   experimental: {
-    swcMinify: true
+    swcMinify: true,
   }
-}
+};
 
-export default nextConfig
+export default withNextIntl(nextConfig);

@@ -1,0 +1,129 @@
+{
+  "Home": {
+    "hero": {
+      "title": "Professional Web",
+      "subtitle": "Creative Agency",
+      "description": "Nova Tech Vision delivers cutting-edge, full-stack web development services, from design to hosting, tailored to your business needs. We build scalable, high-performance websites that drive growth and create lasting impact.",
+      "scrollDown": "SCROLL DOWN",
+      "contactTitle": "Let's Talk"
+    },
+    "services": {
+      "title": "Our Services",
+      "landingPage": {
+        "title": "Landing Page",
+        "description": "A dedicated web page built for digital campaigns, designed to boost conversions and improve SEO visibility.",
+        "imageAlt": "Landing Page Service"
+      },
+      "companyProfile": {
+        "title": "Company Profile",
+        "description": "A business profile website to strengthen branding, build trust, and rank well on Google and search engines.",
+        "imageAlt": "Company Profile Service"
+      },
+      "ecommerce": {
+        "title": "E-Commerce Website",
+        "description": "Create a complete online store with integrated payment and SEO structure to improve search engine rankings.",
+        "imageAlt": "E-Commerce Service"
+      },
+      "realEstate": {
+        "title": "Real Estate Website",
+        "description": "Attractive property websites with smart listings and SEO features to reach potential buyers more effectively.",
+        "imageAlt": "Real Estate Service"
+      },
+      "school": {
+        "title": "School Website",
+        "description": "An all-in-one solution for schools to share announcements, news, and educational info with great SEO support.",
+        "imageAlt": "School Website Service"
+      },
+      "other": {
+        "title": "Other Services",
+        "description": "Explore more web development services tailored to your brand and optimized to perform well on search engines.",
+        "imageAlt": "Other Services"
+      }
+    },
+    "schemaDescription": "Professional web development services for businesses of all sizes.",
+    "portofolio" : {
+    "title": "Website Design Portfolio",
+    "description": "Discover our portfolio of custom website design projects built for businesses, schools, and online stores. Each site is responsive, SEO-optimized, and tailored to our clients' goals.",
+    "explore": "Explore",
+    "featured": "Real Estate Website",
+    "view": "VIEW"
+    },
+    "businessSection": {
+    "title": "Unlock Your Business Potential with Nova Tech Vision",
+    "subtitle": "Nova Tech Vision is a trusted website development service provider that helps businesses, startups, and personal brands build a strong online presence. We create responsive, SEO-friendly, and high-performance websites tailored to your industry goals...",
+      "featureTitles": {
+    "1": "Fast Development Process",
+    "2": "Easy-to-Use Interface",
+    "3": "SEO & Growth Focused"
+  },
+    "scrollDownButton": {
+      "text": "SCROLL DOWN",
+      "icon": "ArrowDown"
+    }
+    
+  }, 
+  "steps": {
+     "0": {
+    "title": "Consultation & Planning",
+    "description": "We discuss your goals, needs, and vision to create a tailored strategy for your website."
+    },
+    "1": {
+      "title": "Design & Prototyping",
+      "description": "We create wireframes and prototypes that align with your branding and user experience goals."
+    },
+    "2": {
+      "title": "Development & Implementation",
+      "description": "Our developers bring your vision to life using clean code and scalable architecture."
+    },
+    "3": {
+      "title": "Testing & Optimization",
+      "description": "We rigorously test functionality, performance, and responsiveness."
+    },
+    "4": {
+      "title": "Launch & Support",
+      "description": "We deploy your site and provide ongoing maintenance and support."
+    }
+  } 
+  
+  },
+
+  "portofolio": {
+  "latest": {
+    "projects": [
+      {
+        "title": "Project title",
+        "role": "UI, Art direction",
+        "image": "/services/image.png"
+      },
+      {
+        "title": "Project title",
+        "role": "B. Art direction",
+        "image": "/services/image.png"
+      },
+      {
+        "title": "Project title",
+        "role": "UI, Art direction",
+        "image": "/services/image.png"
+      },
+      {
+        "title": "Project title",
+        "role": "UI, Art direction",
+        "image": "/services/image.png"
+      },
+      {
+        "title": "Project title",
+        "role": "UI, Art direction",
+        "image": "/services/image.png"
+      },
+      {
+        "title": "Project title",
+        "role": "B. Art direction",
+        "image": "/services/image.png"
+      }
+    ]
+  }
+}
+
+
+}
+

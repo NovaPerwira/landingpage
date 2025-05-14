@@ -5,6 +5,7 @@ import Image from "next/image"
 import { motion } from "framer-motion"
 import { useInView } from "react-intersection-observer"
 import "./HoverSection.css"
+import { useTranslations } from 'next-intl'
 
 const featuredProject = {
   title: "Real Estate Website",
@@ -33,6 +34,7 @@ const portfolioItems = [
 ]
 
 export default function PortfolioSection() {
+  
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null)
   const cursorRef = useRef<HTMLDivElement>(null)
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 })
@@ -46,7 +48,7 @@ export default function PortfolioSection() {
     hidden: { opacity: 0, y: 40 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" } },
   }
-
+const t = useTranslations()
   return (
     <motion.section
       ref={ref}
@@ -59,18 +61,16 @@ export default function PortfolioSection() {
         {/* Header */}
         <motion.div variants={itemVariants} className="text-center mb-12 px-2">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-4 leading-tight">
-            Website Design Portfolio
+            {t("Home.portofolio.title")}
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto mb-8 text-sm sm:text-base md:text-lg">
-            Discover our portfolio of custom website design projects built for businesses,
-            schools, and online stores. Each site is responsive, SEO-optimized, and tailored
-            to our clients' goals.
+            {t('Home.portofolio.description')}
           </p>
           <motion.button
             whileHover={{ scale: 1.05 }}
             className="bg-black text-white px-8 py-3 rounded-full text-sm sm:text-base"
           >
-            Explore
+            {t('Home.latest.explore')}
           </motion.button>
         </motion.div>
 
@@ -90,11 +90,7 @@ export default function PortfolioSection() {
             }
           }}
         >
-          <div className="absolute transform -translate-x-1/2 top-6 left-1/2 z-10 flex space-x-6 bg-white/90 backdrop-blur-md rounded-full p-4 shadow-lg">
-            <h3 className="text-lg sm:text-xl md:text-2xl font-medium">
-              {featuredProject.title}
-            </h3>
-          </div>
+          
 
           <Image
             src={featuredProject.image}

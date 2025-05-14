@@ -1,0 +1,126 @@
+{
+  "Home": {
+    "hero": {
+      "title": "プロフェッショナルウェブ",
+      "subtitle": "クリエイティブエージェンシー",
+      "description": "Nova Tech Visionは、デザインからホスティングまで、ビジネスニーズに合わせた最先端のフルスタックウェブ開発サービスを提供します。成長を促進し、持続的な影響を生み出すスケーラブルで高性能なウェブサイトを構築します。",
+      "scrollDown": "下にスクロール",
+      "contactTitle": "お問い合わせ"
+    },
+    "services": {
+      "title": "サービス",
+      "landingPage": {
+        "title": "ランディングページ",
+        "description": "コンバージョンを促進しSEO可視性を向上させるために設計されたデジタルキャンペーン用の専用ウェブページ。",
+        "imageAlt": "ランディングページサービス"
+      },
+      "companyProfile": {
+        "title": "会社概要",
+        "description": "ブランディングを強化し、信頼を構築し、Googleや検索エンジンでの順位を向上させるビジネスプロファイルウェブサイト。",
+        "imageAlt": "会社概要サービス"
+      },
+      "ecommerce": {
+        "title": "Eコマースウェブサイト",
+        "description": "統合された支払いとSEO構造を備えた完全なオンラインストアを作成し、検索エンジンのランキングを向上させます。",
+        "imageAlt": "Eコマースサービス"
+      },
+      "realEstate": {
+        "title": "不動産ウェブサイト",
+        "description": "スマートリスティングとSEO機能を備えた魅力的な不動産ウェブサイトで、潜在的な買い手により効果的にリーチします。",
+        "imageAlt": "不動産サービス"
+      },
+      "school": {
+        "title": "学校ウェブサイト",
+        "description": "学校がお知らせ、ニュース、教育情報を共有するための優れたSEOサポートを備えたオールインワンソリューション。",
+        "imageAlt": "学校ウェブサイトサービス"
+      },
+      "other": {
+        "title": "その他のサービス",
+        "description": "あなたのブランドに合わせてカスタマイズされ、検索エンジンでのパフォーマンスを最適化するその他のウェブ開発サービスをご覧ください。",
+        "imageAlt": "その他のサービス"
+      }
+    },
+    "schemaDescription": "あらゆる規模のビジネス向けのプロフェッショナルなウェブ開発サービス。",
+    "portofolio": {
+      "title": "ウェブデザインポートフォリオ",
+      "description": "企業、学校、オンラインストア向けに構築されたカスタムWebサイトのポートフォリオをご覧ください。すべてのサイトはレスポンシブで、SEO最適化されており、クライアントの目標に合わせて作られています。",
+      "explore": "見る",
+      "featured": "不動産のウェブサイト",
+      "view": "見る"
+  },
+  "businessSection": {
+  "title": "Nova Tech Visionでビジネスの可能性を最大限に引き出そう",
+  "subtitle": "Nova Tech Visionは、企業、スタートアップ、個人ブランドが強力なオンラインプレゼンスを構築するための信頼できるウェブ開発サービスプロバイダーです。",
+  "featureTitles": {
+    "1": "迅速な開発プロセス",
+    "2": "使いやすいインターフェース",
+    "3": "SEOと成長に特化"
+  },
+  "scrollDownButton": {
+    "text": "下にスクロール",
+    "icon": "ArrowDown"
+  }
+},
+  "steps": [
+    {
+      "title": "相談と計画",
+      "description": "目標、ニーズ、ビジョンを話し合い、あなたのための戦略を立てます。"
+    },
+    {
+      "title": "デザインとプロトタイピング",
+      "description": "ブランディングとUXに沿ったワイヤーフレームとプロトタイプを作成します。"
+    },
+    {
+      "title": "開発と実装",
+      "description": "クリーンなコードとスケーラブルな構成でビジョンを実現します。"
+    },
+    {
+      "title": "テストと最適化",
+      "description": "すべてのデバイスでシームレスに動作するように厳密にテストします。"
+    },
+    {
+      "title": "公開とサポート",
+      "description": "サイトを公開し、継続的なサポートを提供します。"
+    }
+  ]
+
+
+},
+
+"portofolio": {
+    "latest": {
+      "projects": [
+        {
+          "title": "Project title",
+          "role": "UI, Art direction",
+          "image": "/services/image.png"
+        },
+        {
+          "title": "Project title",
+          "role": "B. Art direction",
+          "image": "/services/image.png"
+        },
+        {
+          "title": "Project title",
+          "role": "UI, Art direction",
+          "image": "/services/image.png"
+        },
+        {
+          "title": "Project title",
+          "role": "UI, Art direction",
+          "image": "/services/image.png"
+        },
+        {
+          "title": "Project title",
+          "role": "UI, Art direction",
+          "image": "/services/image.png"
+        },
+        {
+          "title": "Project title",
+          "role": "B. Art direction",
+          "image": "/services/image.png"
+        }
+      ]
+    }
+  }
+}

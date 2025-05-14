@@ -6,7 +6,8 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import { usePathname, useRouter } from 'next/navigation'
-
+import LanguageSwitcher from './language-switcher'
+import ActionSearchBar from './search-bar'
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
@@ -82,6 +83,11 @@ export default function Navbar() {
           </div>
 
           {/* Order Now */}
+          <div className="flex">
+            <ActionSearchBar />
+            <div className="">
+            <LanguageSwitcher />
+          </div>
           <div className="hidden md:block">
             <Link
               href="/consultation"
@@ -90,6 +96,7 @@ export default function Navbar() {
               <Image src="/shopping-cart.svg" alt="Cart" width={18} height={18} />
               <span className="text-center">Order Now</span>
             </Link>
+          </div>
           </div>
 
           {/* Hamburger */}

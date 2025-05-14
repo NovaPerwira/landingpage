@@ -1,7 +1,7 @@
 "use client"
 
 import React, { useEffect, useRef, useState } from "react"
-
+import { useTranslations } from "next-intl"
 const steps = [
   {
     title: "Consultation & Planning",
@@ -67,6 +67,12 @@ const Timeline = () => {
 
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+   const t = useTranslations("Home.steps")
+   const steps = Array.from({ length: 5 }, (_, i) => ({
+    title: t(`${i}.title`),
+    description: t(`${i}.description`)
+  }))
 
   return (
     <div

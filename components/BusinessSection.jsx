@@ -6,6 +6,8 @@ import { useInView } from "react-intersection-observer";
 import { ArrowDown } from "lucide-react";
 import { Inter } from "next/font/google";
 
+import { useTranslations } from 'next-intl'
+
 const inter = Inter({ subsets: ["latin"], display: "swap" });
 
 const containerVariants = {
@@ -25,6 +27,8 @@ const itemVariants = {
 export default function BusinessSection() {
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.3 });
 
+const t = useTranslations('Home');
+const featureKeys = ["1", "2", "3"];
   return (
     <motion.section
       ref={ref}
@@ -48,16 +52,13 @@ export default function BusinessSection() {
             className="flex flex-col lg:w-[30%] items-center lg:items-start text-center lg:text-left space-y-6 "
           >
             <p className="text-gray-300 text-base md:text-lg leading-6 max-w-md">
-              Nova Tech Vision is a trusted website development service provider
-              that helps businesses, startups, and personal brands build a
-              strong online presence. We create responsive, SEO-friendly, and
-              high-performance websites tailored to your industry goals...
+              {t("businessSection.subtitle")}
             </p>
             <motion.button
               whileHover={{ scale: 1.05 }}
               className="border border-white rounded-full px-6 py-3 md:px-8 md:py-4 flex items-center justify-center space-x-2 hover:bg-white hover:text-black transition-colors"
             >
-              <span>SCROLL DOWN</span>
+              <span>{t("businessSection.scrollDownButton.text")}</span>
               <ArrowDown className="w-5 h-5" />
             </motion.button>
           </motion.div>
@@ -95,15 +96,17 @@ export default function BusinessSection() {
               className="w-full h-full object-fill -top-14 mb-6"
             />
 
-            {[ "Fast Development Process", "Easy-to-Use Interface", "SEO & Growth Focused"].map((text, index) => (
+         
+
+            {featureKeys.map((key, index) => (
               <motion.p
-                key={text}
+                key={index}
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.2 }}
                 className="text-base md:text-xl text-white"
               >
-                {text}
+                {t(`businessSection.featureTitles.${key}`)}
               </motion.p>
             ))}
 

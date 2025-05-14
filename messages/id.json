@@ -1,0 +1,128 @@
+{
+  "Home": {
+    "hero": {
+      "title": "Web Profesional",
+      "subtitle": "Agensi Kreatif",
+      "description": "Nova Tech Vision menyediakan layanan pengembangan web full-stack terkini, dari desain hingga hosting, disesuaikan dengan kebutuhan bisnis Anda. Kami membangun website yang skalabel dan berkinerja tinggi untuk mendorong pertumbuhan dan menciptakan dampak jangka panjang.",
+      "scrollDown": "GULIR KE BAWAH",
+      "contactTitle": "Mari Bicara"
+    },
+    "services": {
+      "title": "Layanan Kami",
+      "landingPage": {
+        "title": "Landing Page",
+        "description": "Halaman web khusus yang dibangun untuk kampanye digital, dirancang untuk meningkatkan konversi dan visibilitas SEO.",
+        "imageAlt": "Layanan Landing Page"
+      },
+      "companyProfile": {
+        "title": "Profil Perusahaan",
+        "description": "Website profil bisnis untuk memperkuat branding, membangun kepercayaan, dan peringkat baik di Google dan mesin pencari.",
+        "imageAlt": "Layanan Profil Perusahaan"
+      },
+      "ecommerce": {
+        "title": "Website E-Commerce",
+        "description": "Buat toko online lengkap dengan pembayaran terintegrasi dan struktur SEO untuk meningkatkan peringkat mesin pencari.",
+        "imageAlt": "Layanan E-Commerce"
+      },
+      "realEstate": {
+        "title": "Website Real Estate",
+        "description": "Website properti menarik dengan daftar cerdas dan fitur SEO untuk menjangkau calon pembeli lebih efektif.",
+        "imageAlt": "Layanan Real Estate"
+      },
+      "school": {
+        "title": "Website Sekolah",
+        "description": "Solusi all-in-one bagi sekolah untuk berbagi pengumuman, berita, dan info pendidikan dengan dukungan SEO yang hebat.",
+        "imageAlt": "Layanan Website Sekolah"
+      },
+      "other": {
+        "title": "Layanan Lainnya",
+        "description": "Jelajahi layanan pengembangan web lainnya yang disesuaikan dengan merek Anda dan dioptimalkan untuk tampil baik di mesin pencari.",
+        "imageAlt": "Layanan Lainnya"
+      }
+    },
+    "schemaDescription": "Layanan pengembangan web profesional untuk bisnis dari semua ukuran.",
+    "portofolio": {
+      "title": "Portofolio Desain Website",
+      "description": "Lihat portofolio kami dari proyek desain website kustom untuk bisnis, sekolah, dan toko online. Setiap situs responsif, dioptimalkan SEO, dan disesuaikan dengan tujuan klien kami.",
+      "explore": "Jelajahi",
+      "featured": "Website Properti",
+      "view": "LIHAT"
+    },
+    
+  "businessSection": {
+  "title": "Tingkatkan Potensi Bisnis Anda bersama Nova Tech Vision",
+  "subtitle": "Nova Tech Vision adalah penyedia layanan pengembangan website terpercaya yang membantu bisnis, startup, dan personal brand membangun kehadiran online yang kuat.",
+  "featureTitles": {
+    "1": "Proses Pengembangan Cepat",
+    "2": "Antarmuka Mudah Digunakan",
+    "3": "Fokus pada SEO & Pertumbuhan"
+  },
+  "scrollDownButton": {
+    "text": "GULIR KE BAWAH",
+    "icon": "ArrowDown"
+  }
+},
+ "steps": [
+    {
+      "title": "Konsultasi & Perencanaan",
+      "description": "Kami mendiskusikan tujuan, kebutuhan, dan visi Anda untuk membuat strategi yang disesuaikan."
+    },
+    {
+      "title": "Desain & Prototyping",
+      "description": "Kami membuat wireframe dan prototipe yang selaras dengan branding dan tujuan UX Anda."
+    },
+    {
+      "title": "Pengembangan & Implementasi",
+      "description": "Developer kami mengubah visi Anda menjadi kenyataan dengan kode bersih dan arsitektur yang skalabel."
+    },
+    {
+      "title": "Pengujian & Optimasi",
+      "description": "Kami menguji fungsionalitas dan performa untuk memastikan kelancaran di semua perangkat."
+    },
+    {
+      "title": "Peluncuran & Dukungan",
+      "description": "Kami meluncurkan situs Anda dan memberikan dukungan berkelanjutan."
+    }
+  ]
+
+
+
+  },
+
+  "portofolio": {
+    "latest": {
+      "projects": [
+        {
+          "title": "Project title",
+          "role": "UI, Art direction",
+          "image": "/services/image.png"
+        },
+        {
+          "title": "Project title",
+          "role": "B. Art direction",
+          "image": "/services/image.png"
+        },
+        {
+          "title": "Project title",
+          "role": "UI, Art direction",
+          "image": "/services/image.png"
+        },
+        {
+          "title": "Project title",
+          "role": "UI, Art direction",
+          "image": "/services/image.png"
+        },
+        {
+          "title": "Project title",
+          "role": "UI, Art direction",
+          "image": "/services/image.png"
+        },
+        {
+          "title": "Project title",
+          "role": "B. Art direction",
+          "image": "/services/image.png"
+        }
+      ]
+    }
+  }
+}

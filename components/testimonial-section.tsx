@@ -132,61 +132,64 @@ export default function TestimonialSection() {
 
       <div className="w-full  px-4 flex justify-center">
       <Swiper
-  onSwiper={(swiper) => (swiperRef.current = swiper)}
-  effect="coverflow"
-  grabCursor
-  centeredSlides
-  slidesPerView={1.5} // manual control, atau ganti via JS
-  modules={[EffectCoverflow]}
-  coverflowEffect={{
-    rotate: 20,
-    stretch: 50, // ini jaraknya
-    depth: 200,
-    modifier: 1,
-    slideShadows: false,
-  }}
-          breakpoints={{
-            320: { slidesPerView: 1.2, spaceBetween: 20 },
-            480: { slidesPerView: 1.5, spaceBetween: 24 },
-            640: { slidesPerView: 2, spaceBetween: 30 },
-            768: { slidesPerView: 2, spaceBetween: 30 },
-            1024: { slidesPerView: 2.5, spaceBetween: 40 },
-            1280: { slidesPerView: 3, spaceBetween: 50 },
-            1440: { slidesPerView: 4, spaceBetween: 60 },
-          }}
-          
-          
-        >
-          {testimonials.map((t, index) => (
-            <SwiperSlide key={index}>
-              <div className="bg-gray-50 w-80 p-6 rounded-md align-center items-center shadow-md h-full flex flex-col justify-center group transition-all duration-300">
-                <p className={`font-source text-gray-700 mb-4 text-base leading-6 line-clamp- group-hover:line-clamp-none transition-all duration-300`}>
-                  {t.feedback}
-                </p>
-                <div className="flex mb-4 text-2xl">
-                      {[...Array(t.rating)].map((_, i) => (
-                        <span key={i} className="text-yellow-400">★</span>
-                      ))}
-                      {[...Array(5 - t.rating)].map((_, i) => (
-                        <span key={i} className="text-gray-300">★</span>
-                      ))}
-                </div>
-                <img
-                    src={t.image}
-                    alt={t.name}
-                    className="w-12 h-12 rounded-full object-cover mr-4"
-                  />
-                <div className="flex items-center mt-6">
-                  
-                  <div>
-                    <h4 className="text-lg font-semibold">{t.name}</h4>
-                    <p className="text-sm text-gray-500">{t.role}</p>
-                    
-                  </div>
-                </div>
-              </div>
-            </SwiperSlide>
-          ))}
+        onSwiper={(swiper) => (swiperRef.current = swiper)}
+        effect="coverflow"
+        grabCursor
+        centeredSlides
+        slidesPerView={1.5} // manual control, atau ganti via JS
+        modules={[EffectCoverflow]}
+        coverflowEffect={{
+          rotate: 20,
+          stretch: 50, // ini jaraknya
+          depth: 200,
+          modifier: 1,
+          slideShadows: false,
+        }}
+                breakpoints={{
+                  320: { slidesPerView: 1.2, spaceBetween: 20 },
+                  480: { slidesPerView: 1.5, spaceBetween: 24 },
+                  640: { slidesPerView: 2, spaceBetween: 30 },
+                  768: { slidesPerView: 2, spaceBetween: 30 },
+                  1024: { slidesPerView: 2.5, spaceBetween: 40 },
+                  1280: { slidesPerView: 3, spaceBetween: 50 },
+                  1440: { slidesPerView: 4, spaceBetween: 60 },
+                }}
+                
+                
+              >
+                {testimonials.map((t, index) => (
+                  <SwiperSlide key={index}>
+                    <div className="bg-gray-50 w-80 p-6 rounded-md align-center items-center shadow-md h-full flex flex-col justify-center group transition-all duration-300">
+                      
+                      
+                      
+                      
+                      <div className="flex items-start justify-start mt-6">
+                        <img
+                          src={t.image}
+                          alt={t.name}
+                          className="w-12 h-12 rounded-full object-cover mr-4"
+                        />
+                        <div>
+                          <h4 className="text-lg font-semibold">{t.name}</h4>
+                          <p className="text-sm text-gray-500">{t.role}</p>
+                          
+                        </div>
+                      </div>
+                      <div className="flex mb-4 text-2xl">
+                            {[...Array(t.rating)].map((_, i) => (
+                              <span key={i} className="text-yellow-400">★</span>
+                            ))}
+                            {[...Array(5 - t.rating)].map((_, i) => (
+                              <span key={i} className="text-gray-300">★</span>
+                            ))}
+                      </div>
+                      <p className={`font-source text-center text-gray-700 mb-4 text-base leading-6 line-clamp- group-hover:line-clamp-none transition-all duration-300`}>
+                        {t.feedback}
+                      </p>
+                    </div>
+                  </SwiperSlide>
+                ))}
         </Swiper>
       </div>
     </div>
