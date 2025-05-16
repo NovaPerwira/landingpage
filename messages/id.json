@@ -40,6 +40,10 @@
         "imageAlt": "Layanan Lainnya"
       }
     },
+    "testimonial" : {
+      "title": "Testimoni",
+      "subtitle": "Jangan hanya percaya pada kata-kata kami – lihat apa kata pengguna kami tentang pengalaman mereka."
+    },
     "schemaDescription": "Layanan pengembangan web profesional untuk bisnis dari semua ukuran.",
     "portofolio": {
       "title": "Portofolio Desain Website",
@@ -85,12 +89,13 @@
     }
   ]
 
-
+  
 
   },
 
   "portofolio": {
     "latest": {
+      "title" : "Latest Project",
       "projects": [
         {
           "title": "Project title",
@@ -124,5 +129,26 @@
         }
       ]
     }
-  }
+  },
+  "faq": {
+  "title": "Dapatkan semua jawaban dari pertanyaanmu di sini",
+  "subtitle": "Sangat memalukan jika menambahkan kontak yang sama ke dua kampanye berbeda.",
+  "button": "Mulai Gratis Sekarang →",
+  "section": "FAQ",
+  "faqs": [
+    {
+      "question": "Untuk apa ManyReach digunakan?",
+      "answer": "ManyReach digunakan untuk mengotomatiskan outreach dan mengelola kampanye dengan mengunggah kontak dan melacak keterlibatan."
+    },
+    {
+      "question": "Apakah saya bisa mengunggah kontak sebanyak mungkin?",
+      "answer": "Ya, kamu bisa mengunggah kontak tanpa batas sesuai dengan paket langgananmu."
+    },
+    {
+      "question": "Apa itu kredit?",
+      "answer": "Kredit adalah satuan yang mewakili satu percobaan outreach atau pencarian kontak, tergantung pada layanan."
+    }
+  ]
+}
+
 }

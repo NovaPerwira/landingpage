@@ -6,8 +6,9 @@ import { Navigation } from 'swiper/modules';
 import { EffectCoverflow, Pagination } from 'swiper/modules';
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import 'swiper/css';
+import { useTranslations } from 'next-intl';
 import 'swiper/css/navigation';
-
+import us from "@/public/flag/us.svg"
 
 
 
@@ -16,6 +17,7 @@ export default function TestimonialSection() {
   const prevRef = useRef(null);
   const nextRef = useRef(null);
 
+  const t = useTranslations('Home.testimonial');
   const testimonials = [
     {
       name: 'Andi Pratama',
@@ -24,6 +26,8 @@ export default function TestimonialSection() {
         "I've been using this web hosting service for over a year and I'm really impressed with the uptime and support. The website has never gone down and the customer service is always quick to help with any issues I have. Highly recommend!",
       rating: 5,
       image: '/services/image.png',
+      
+      countryCode: "id"
     },
     {
       name: 'Sheila Monica',
@@ -32,6 +36,8 @@ export default function TestimonialSection() {
         'Tim mereka responsif dan profesional. Website kami sekarang jauh lebih cepat dan modern.',
       rating: 5,
       image: '/services/image.png',
+       language: "us",
+          countryCode: "us"
     },
     {
       name: 'Budi Santoso',
@@ -40,6 +46,8 @@ export default function TestimonialSection() {
         'Harga bersahabat tapi kualitas premium! Sangat cocok untuk UMKM yang mau naik kelas.',
       rating: 4,
       image: '/services/image.png',
+       language: "en",
+          countryCode: "us"
     },
     {
       name: 'Citra Lestari',
@@ -48,6 +56,8 @@ export default function TestimonialSection() {
         'UI/UX-nya clean dan intuitif banget. Proses revisi juga fleksibel dan lancar.',
       rating: 5,
       image: '/services/image.png',
+       language: "en",
+          countryCode: "us"
     },
     {
       name: 'Rizky Dwi',
@@ -56,6 +66,8 @@ export default function TestimonialSection() {
         'Saya nggak nyangka bisa dapet hasil sebagus ini dalam waktu singkat. Highly recommended!',
       rating: 5,
       image: '/services/image.png',
+       language: "en",
+          countryCode: "us"
     },
     {
       name: 'Rizky Dwi',
@@ -64,6 +76,8 @@ export default function TestimonialSection() {
         'Saya nggak nyangka bisa dapet hasil sebagus ini dalam waktu singkat. Highly recommended!',
       rating: 5,
       image: '/services/image.png',
+       language: "en",
+          countryCode: "us"
     },
     {
       name: 'Rizky Dwi',
@@ -72,6 +86,8 @@ export default function TestimonialSection() {
         'Saya nggak nyangka bisa dapet hasil sebagus ini dalam waktu singkat. Highly recommended!',
       rating: 5,
       image: '/services/image.png',
+       language: "en",
+          countryCode: "us"
     },
     {
       name: 'Rizky Dwi',
@@ -80,6 +96,8 @@ export default function TestimonialSection() {
         'Saya nggak nyangka bisa dapet hasil sebagus ini dalam waktu singkat. Highly recommended!',
       rating: 5,
       image: '/services/image.png',
+       language: "en",
+          countryCode: "us"
     },
     {
       name: 'Rizky Dwi',
@@ -88,6 +106,8 @@ export default function TestimonialSection() {
         'Saya nggak nyangka bisa dapet hasil sebagus ini dalam waktu singkat. Highly recommended!',
       rating: 5,
       image: '/services/image.png',
+       language: "en",
+          countryCode: "us"
     },
   ];
 
@@ -108,9 +128,9 @@ export default function TestimonialSection() {
     <div className="flex flex-col items-center py-12">
       <div className="flex justify-between items-center mb-6">
         <div>
-          <h2 className="text-3xl font-bold">Testimonial</h2>
+          <h2 className="text-3xl font-bold">{t('title')}</h2>
           <p className="text-gray-600 mt-2 max-w-md">
-            Don't just take our word for it – see what actual users of our service have to say about their experience.
+            {t('subtitle')}
           </p>
         </div>
         <div className="flex gap-2">
@@ -159,35 +179,45 @@ export default function TestimonialSection() {
               >
                 {testimonials.map((t, index) => (
                   <SwiperSlide key={index}>
-                    <div className="bg-gray-50 w-80 p-6 rounded-md align-center items-center shadow-md h-full flex flex-col justify-center group transition-all duration-300">
-                      
-                      
-                      
-                      
-                      <div className="flex items-start justify-start mt-6">
-                        <img
-                          src={t.image}
-                          alt={t.name}
-                          className="w-12 h-12 rounded-full object-cover mr-4"
-                        />
-                        <div>
-                          <h4 className="text-lg font-semibold">{t.name}</h4>
-                          <p className="text-sm text-gray-500">{t.role}</p>
-                          
-                        </div>
-                      </div>
-                      <div className="flex mb-4 text-2xl">
-                            {[...Array(t.rating)].map((_, i) => (
-                              <span key={i} className="text-yellow-400">★</span>
-                            ))}
-                            {[...Array(5 - t.rating)].map((_, i) => (
-                              <span key={i} className="text-gray-300">★</span>
-                            ))}
-                      </div>
-                      <p className={`font-source text-center text-gray-700 mb-4 text-base leading-6 line-clamp- group-hover:line-clamp-none transition-all duration-300`}>
-                        {t.feedback}
-                      </p>
-                    </div>
+                    <div className="relative bg-gray-50 w-80 p-6 rounded-lg shadow-md h-full flex flex-col justify-between group transition-all duration-300">
+    
+    {/* Flag di pojok kanan atas */}
+    <div className="absolute top-4 right-4 w-6 h-4 rounded-sm overflow-hidden shadow-md">
+      <img
+        src={`/flags/${t.language}.svg`} // Contoh: en.svg, id.svg, jp.svg
+        alt={t.language}
+        className="object-cover w-full h-full"
+      />
+    </div>
+
+    {/* Feedback message */}
+    <p className="text-gray-700 text-center text-base leading-6 mb-4 group-hover:line-clamp-none transition-all duration-300">
+      {t.feedback}
+    </p>
+
+    {/* Rating stars */}
+    <div className="flex mb-4  text-xl">
+      {[...Array(t.rating)].map((_, i) => (
+        <span key={i} className="text-yellow-400">★</span>
+      ))}
+      {[...Array(5 - t.rating)].map((_, i) => (
+        <span key={i} className="text-gray-300">★</span>
+      ))}
+    </div>
+
+    {/* Avatar & identity */}
+    <div className="flex items-start mt-auto pt-4 border-t">
+      <img
+        src={t.image}
+        alt={t.name}
+        className="w-10 h-10 rounded-full object-cover mr-4"
+      />
+      <div>
+        <h4 className="text-sm font-semibold">{t.name}</h4>
+        <p className="text-xs text-gray-500">{t.role}</p>
+      </div>
+    </div>
+  </div>
                   </SwiperSlide>
                 ))}
         </Swiper>

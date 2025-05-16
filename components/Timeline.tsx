@@ -77,7 +77,7 @@ const Timeline = () => {
   return (
     <div
       ref={containerRef}
-      className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-32"
+      className="relative w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-20"
     >
       <div className="relative grid grid-cols-[30px_1fr] gap-6">
         {/* Vertical Timeline Line */}

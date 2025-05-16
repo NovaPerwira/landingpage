@@ -40,6 +40,10 @@
         "imageAlt": "Other Services"
       }
     },
+    "testimonial" : {
+       "title": "Testimonial",
+  "subtitle": "Don't just take our word for it – see what actual users of our service have to say about their experience."
+    },
     "schemaDescription": "Professional web development services for businesses of all sizes.",
     "portofolio" : {
     "title": "Website Design Portfolio",
@@ -83,12 +87,18 @@
       "title": "Launch & Support",
       "description": "We deploy your site and provide ongoing maintenance and support."
     }
-  } 
+  },
+  
+  "testimonial_title": "Testimonial",
+  "testimonial_subtitle": "Don't just take our word for it – see what actual users of our service have to say about their experience."
+
+
   
   },
 
   "portofolio": {
   "latest": {
+    "title" : "Latest Project",
     "projects": [
       {
         "title": "Project title",
@@ -122,6 +132,27 @@
       }
     ]
   }
+},
+
+  "faq" : {
+  "title": "Get all your questions answered here",
+  "subtitle": "It’s extremely embarrassing adding the same contact in two different campaigns.",
+  "button": "Start for Free Now →",
+  "section": "FAQ",
+  "faqs": [
+    {
+      "question": "What is ManyReach Used For?",
+      "answer": "ManyReach is used to automate outreach and manage campaigns by uploading contacts and tracking engagement."
+    },
+    {
+      "question": "Can I Upload As Many Contacts As I Want?",
+      "answer": "Yes, you can upload unlimited contacts depending on your subscription plan."
+    },
+    {
+      "question": "What is a credit?",
+      "answer": "A credit is a unit that represents one outreach attempt or contact search depending on the service."
+    }
+  ]
 }
 
 

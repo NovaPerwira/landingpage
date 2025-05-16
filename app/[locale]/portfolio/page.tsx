@@ -8,6 +8,7 @@ import TestimonialSection from "@/components/testimonial-section"
 import { CallToAction } from "@/components/CTA"
 import { ContactSection } from "@/components/ContactSection"
 import LatestProjects from "@/components/LatestProject"
+import { useTranslations } from "next-intl"
 
 export default async function PortfolioPage() {
   
@@ -20,7 +21,7 @@ export default async function PortfolioPage() {
 //   { title: "Project title", role: "UI, Art direction", img: "/services/image.png" },
 //   { title: "Project title", role: "B. Art direction", img: "/services/image.png" },
 // ];
-
+// const t  = useTranslations("")
   return (
     <div className="flex flex-col min-h-screen">
       <PortfolioSection />
@@ -30,7 +31,7 @@ export default async function PortfolioPage() {
     {/* <section className="py-16 w-full md:px-12 lg:px-20 bg-white">
       
       <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">\
-        {t("Portofolio.latest.title")}
+        {t("portofolio.latest.title")}
         </h2>
       <div className="grid grid-cols-1 mx-auto max-w-7xl  sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project, index) => (
@@ -47,7 +48,7 @@ export default async function PortfolioPage() {
       </div>
     </section> */}
 
-    < LatestProjects />
+    {/* < LatestProjects /> */}
 
       
       <TestimonialSection />

@@ -7,7 +7,7 @@ import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import { usePathname, useRouter } from 'next/navigation'
 import LanguageSwitcher from './language-switcher'
-import ActionSearchBar from './search-bar'
+
 const inter = Inter({
   subsets: ['latin'],
   variable: '--font-inter',
@@ -43,96 +43,98 @@ export default function Navbar() {
   const handleTabClick = (index, path) => {
     setActiveIndex(index)
     router.push(path)
+    setIsOpen(false)
   }
 
   return (
-    <nav className={`${inter.className} calm relative z-50`}>
+    <nav className={`${inter.className} relative z-50`}>
       <div className="bg-[#f2f2f2] pt-4 md:pt-6">
-        <div className="flex items-center justify-between w-[95%] md:w-[92%] lg:w-[90%] mx-auto rounded-full px-3 md:px-4 lg:px-6 shadow-sm bg-[#0A0D17]
-          h-16 sm:h-20 md:h-24 text-white relative transition-all duration-300">
-
+        <div className="flex items-center justify-between w-[95%] md:w-[92%] lg:w-[90%] mx-auto h-16 sm:h-20 md:h-24">
           {/* Logo */}
           <Image
-            src="/logo nova tech vision.svg"
+            src="/logo kavushion.svg"
             alt="Logo"
             width={80}
             height={80}
             className="w-[50px] sm:w-[65px] md:w-[70px]"
           />
 
-          {/* Desktop Nav Tabs */}
-          <div className="hidden md:flex relative bg-gray-800 rounded-full p-1">
-            <div
-              className="absolute top-1 left-1 h-10 rounded-full bg-white transition-transform duration-300 ease-in-out z-0"
-              style={{
-                width: `${100 / navItems.length}%`,
-                transform: `translateX(${activeIndex * 100}%)`,
-              }}
-            />
-            {navItems.map((item, i) => (
-              <button
-                key={item.href}
-                onClick={() => handleTabClick(i, item.href)}
-                className={`relative z-10 text-sm px-5 py-2 rounded-full transition-colors duration-300 ${
-                  activeIndex === i ? 'text-black' : 'text-white'
-                }`}
-              >
-                {item.label}
-              </button>
-            ))}
+          {/* Desktop Nav */}
+          <div className="hidden md:flex items-center gap-4">
+            <div className="relative bg-[#0A0D17] rounded-full px-1 py-1">
+              <div
+                className="absolute top-1 left-1 bottom-1 rounded-full bg-white transition-transform duration-300 ease-in-out z-0"
+                style={{
+                  width: `${100 / navItems.length}%`,
+                  transform: `translateX(${activeIndex * 100}%)`,
+                }}
+              />
+              <div className="flex relative z-10">
+                {navItems.map((item, i) => (
+                  <button
+                    key={item.href}
+                    onClick={() => handleTabClick(i, item.href)}
+                    className={`text-sm px-5 py-2 h-10 flex items-center justify-center rounded-full transition-colors duration-300 ${
+                      activeIndex === i ? 'text-black' : 'text-white'
+                    }`}
+                  >
+                    {item.label}
+                  </button>
+                ))}
+              </div>
+            </div>
           </div>
 
-          {/* Order Now */}
-          <div className="flex">
-            <ActionSearchBar />
-            <div className="">
-            <LanguageSwitcher />
-          </div>
-          <div className="hidden md:block">
+          {/* CTA + Lang Switch + Burger */}
+          <div className="flex items-center gap-2 md:gap-4">
+            <div className="hidden md:block">
+              <LanguageSwitcher />
+            </div>
             <Link
               href="/consultation"
-              className="bg-[#F2F2F2] text-black text-xs md:text-sm lg:text-base px-4 md:px-3 lg:px-6 py-2 md:py-2.5 lg:py-3 rounded-full font-medium hover:bg-[#0A0D17] hover:text-[#0099FF] transition-all duration-200 flex items-center gap-2 max-w-[180px]"
+              className="bg-[#0A0D17] text-white text-xs md:text-sm lg:text-base px-4 md:px-5 py-2 md:py-2.5 rounded-full font-medium hover:bg-white hover:text-[#0A0D17] border border-transparent hover:border-[#0A0D17] transition-all duration-200 flex items-center gap-2"
             >
               <Image src="/shopping-cart.svg" alt="Cart" width={18} height={18} />
-              <span className="text-center">Order Now</span>
+              <span>Order Now</span>
             </Link>
+            {/* Mobile burger */}
+            <button
+              className="md:hidden text-black"
+              onClick={() => setIsOpen(!isOpen)}
+              aria-label="Toggle mobile menu"
+            >
+              {isOpen ? <X size={28} /> : <Menu size={28} />}
+            </button>
           </div>
-          </div>
-
-          {/* Hamburger */}
-          <button
-            className="md:hidden text-white z-50"
-            onClick={() => setIsOpen(!isOpen)}
-          >
-            {isOpen ? <X size={28} /> : <Menu size={28} />}
-          </button>
         </div>
       </div>
 
-      {/* Mobile Nav Overlay */}
+      {/* Mobile Nav Overlay (auto height + transparent) */}
       <div
-        className={`fixed inset-0 bg-[#0A0D17] transition-transform duration-500 ease-in-out transform ${
-          isOpen ? 'translate-y-0 opacity-100' : '-translate-y-full opacity-0'
-        } z-40 flex flex-col items-center pt-28 space-y-6 px-6 md:hidden`}
+        className={`absolute left-0 right-0 top-[100%] mx-auto w-full max-w-md rounded-b-xl bg-[#0A0D17]/90 backdrop-blur-md shadow-md transition-all duration-300 overflow-hidden md:hidden ${
+          isOpen ? 'max-h-screen py-6 opacity-100' : 'max-h-0 opacity-0 py-0'
+        }`}
       >
-        {navItems.map(({ label, href }) => (
+        <div className="flex flex-col items-center space-y-5 px-6">
+          {navItems.map(({ label, href }, i) => (
+            <button
+              key={href}
+              onClick={() => handleTabClick(i, href)}
+              className="text-base font-medium text-white hover:text-[#0099FF] transition-all duration-300"
+            >
+              {label}
+            </button>
+          ))}
           <Link
-            key={href}
-            href={href}
-            className="text-lg sm:text-xl font-medium text-white hover:text-[#0099FF] transition-all duration-300"
+            href="/consultation"
+            className="bg-[#F2F2F2] text-black text-center px-5 py-3 rounded-full font-medium hover:bg-[#0A0D17] hover:text-[#0099FF] transition flex items-center gap-2 text-base"
             onClick={() => setIsOpen(false)}
           >
-            {label}
+            <Image src="/shopping-cart.svg" alt="Shopping Cart" width={20} height={20} />
+            Free Consultation
           </Link>
-        ))}
-        <Link
-          href="/consultation"
-          className="bg-[#F2F2F2] text-black text-center px-5 py-3 rounded-full font-medium hover:bg-[#0A0D17] hover:text-[#0099FF] transition flex items-center gap-2 text-base sm:text-lg"
-          onClick={() => setIsOpen(false)}
-        >
-          <Image src="/shopping-cart.svg" alt="Shopping Cart" width={20} height={20} />
-          Free Consultation
-        </Link>
+          <LanguageSwitcher />
+        </div>
       </div>
     </nav>
   )

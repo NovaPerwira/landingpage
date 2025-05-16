@@ -70,7 +70,7 @@ const t = useTranslations()
             whileHover={{ scale: 1.05 }}
             className="bg-black text-white px-8 py-3 rounded-full text-sm sm:text-base"
           >
-            {t('Home.latest.explore')}
+            {t('Home.portofolio.explore')}
           </motion.button>
         </motion.div>
 

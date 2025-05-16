@@ -1,20 +1,21 @@
 "use client"
 
 import { useTranslation } from "next-i18next"
-import Image from "next/image" // Import next/image for image optimization
+import { useTranslations } from "next-intl"
+import Image from "next/image"
 
 export default function LatestProjects() {
-  const { t } = useTranslation("common")
+  const t  = useTranslations("")
   const projects = t("portofolio.latest.projects", { returnObjects: true })
-
-  // Fallback for empty or missing projects
-  if (!Array.isArray(projects) || projects.length === 0) {
+if (!Array.isArray(projects) || projects.length === 0) {
     return (
       <section className="py-16 w-full md:px-12 lg:px-20 bg-white">
         <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
-          {t("projects.title")}
+          {t("portofolio.latest.title")}
         </h2>
-        <p className="text-center text-gray-500">{t("projects.noProjects")}</p>
+        <p className="text-center text-gray-500">
+          {t("portofolio.latest.noProjects")}
+        </p>
       </section>
     )
   }
@@ -22,15 +23,18 @@ export default function LatestProjects() {
   return (
     <section className="py-16 w-full md:px-12 lg:px-20 bg-white">
       <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
-        {t("projects.title")}
+        {t("portofolio.latest.title")}
       </h2>
       <div className="grid grid-cols-1 mx-auto max-w-7xl sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {projects.map((project, index) => (
-          <div key={index} className="space-y-2">
+          <div
+            key={index}
+            className="space-y-2 transition-transform hover:scale-[1.02] duration-300"
+          >
             <Image
               src={project.image}
               alt={project.title}
-              width={500} // Define width and height
+              width={500}
               height={400}
               className="w-full h-64 object-cover rounded-xl shadow-md"
             />

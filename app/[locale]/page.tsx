@@ -10,7 +10,7 @@ import BusinessSection from "@/components/BusinessSection"
 import Timeline from "@/components/Timeline"
 import { useTranslations } from "next-intl"
 import Head from "next/head"
-import HeroGeometric from "@/components/elegant-bg"
+import HeroGeometric from "@/components/MainHero"
 
 
 
@@ -192,11 +192,13 @@ export default function Home() {
           <Timeline />
         </div>
 
+ {/* FAQ Section */}
+        <FAQSection />
+        
         {/* Testimonial Section */}
         <TestimonialSection />
 
-        {/* FAQ Section */}
-        <FAQSection />
+       
       </div>
     </>
   )
