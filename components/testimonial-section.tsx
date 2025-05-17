@@ -18,98 +18,80 @@ export default function TestimonialSection() {
   const nextRef = useRef(null);
 
   const t = useTranslations('Home.testimonial');
-  const testimonials = [
-    {
-      name: 'Andi Pratama',
-      role: 'Freelance Designer',
-      feedback:
-        "I've been using this web hosting service for over a year and I'm really impressed with the uptime and support. The website has never gone down and the customer service is always quick to help with any issues I have. Highly recommend!",
-      rating: 5,
-      image: '/services/image.png',
-      
-      countryCode: "id"
-    },
-    {
-      name: 'Sheila Monica',
-      role: 'Software Developer',
-      feedback:
-        'Tim mereka responsif dan profesional. Website kami sekarang jauh lebih cepat dan modern.',
-      rating: 5,
-      image: '/services/image.png',
-       language: "us",
-          countryCode: "us"
-    },
-    {
-      name: 'Budi Santoso',
-      role: 'Entrepreneur',
-      feedback:
-        'Harga bersahabat tapi kualitas premium! Sangat cocok untuk UMKM yang mau naik kelas.',
-      rating: 4,
-      image: '/services/image.png',
-       language: "en",
-          countryCode: "us"
-    },
-    {
-      name: 'Citra Lestari',
-      role: 'Digital Marketer',
-      feedback:
-        'UI/UX-nya clean dan intuitif banget. Proses revisi juga fleksibel dan lancar.',
-      rating: 5,
-      image: '/services/image.png',
-       language: "en",
-          countryCode: "us"
-    },
-    {
-      name: 'Rizky Dwi',
-      role: 'Startup Founder',
-      feedback:
-        'Saya nggak nyangka bisa dapet hasil sebagus ini dalam waktu singkat. Highly recommended!',
-      rating: 5,
-      image: '/services/image.png',
-       language: "en",
-          countryCode: "us"
-    },
-    {
-      name: 'Rizky Dwi',
-      role: 'Startup Founder',
-      feedback:
-        'Saya nggak nyangka bisa dapet hasil sebagus ini dalam waktu singkat. Highly recommended!',
-      rating: 5,
-      image: '/services/image.png',
-       language: "en",
-          countryCode: "us"
-    },
-    {
-      name: 'Rizky Dwi',
-      role: 'Startup Founder',
-      feedback:
-        'Saya nggak nyangka bisa dapet hasil sebagus ini dalam waktu singkat. Highly recommended!',
-      rating: 5,
-      image: '/services/image.png',
-       language: "en",
-          countryCode: "us"
-    },
-    {
-      name: 'Rizky Dwi',
-      role: 'Startup Founder',
-      feedback:
-        'Saya nggak nyangka bisa dapet hasil sebagus ini dalam waktu singkat. Highly recommended!',
-      rating: 5,
-      image: '/services/image.png',
-       language: "en",
-          countryCode: "us"
-    },
-    {
-      name: 'Rizky Dwi',
-      role: 'Startup Founder',
-      feedback:
-        'Saya nggak nyangka bisa dapet hasil sebagus ini dalam waktu singkat. Highly recommended!',
-      rating: 5,
-      image: '/services/image.png',
-       language: "en",
-          countryCode: "us"
-    },
-  ];
+ const testimonials = [
+  {
+    name: 'Putri Anindya',
+    role: 'Content Creator',
+    feedback:
+      'Tim Kavushion bantu banget pas bikin website gue. Desainnya clean, cepet juga loading-nya. Bikin personal branding gue makin naik.',
+    rating: 5,
+    image: '/services/image.png',
+    language: 'id',
+    countryCode: 'id',
+  },
+  {
+    name: 'Jack Thompson',
+    role: 'Startup Founder',
+    feedback:
+      "Kavushion did a solid job with our website. Fast loading, great design, and super easy to manage. Definitely made us look more professional.",
+    rating: 5,
+    image: '/services/image.png',
+    language: 'en',
+    countryCode: 'us',
+  },
+  {
+    name: 'Yuki Tanaka',
+    role: 'App Designer',
+    feedback:
+      'KavushionのUI/UXデザインはとても直感的で使いやすいです。細かい要望にもすぐ対応してくれて安心感がありました。',
+    rating: 5,
+    image: '/services/image.png',
+    language: 'jp',
+    countryCode: 'jp',
+  },
+  {
+    name: 'Carlos Méndez',
+    role: 'Diseñador Gráfico',
+    feedback:
+      'Trabajar con Kavushion fue fácil y rápido. El diseño web es moderno y se adapta bien a móviles. Muy recomendado.',
+    rating: 5,
+    image: '/services/image.png',
+    language: 'es',
+    countryCode: 'es',
+  },
+  {
+    name: 'Lena Schneider',
+    role: 'UX Specialist',
+    feedback:
+      'Kavushion hat unsere Website deutlich verbessert. Das Design ist modern und professionell, und die Kommunikation war immer zuverlässig.',
+    rating: 5,
+    image: '/services/image.png',
+    language: 'de',
+    countryCode: 'de',
+  },
+  {
+    name: 'Felipe Souza',
+    role: 'Web Developer',
+    feedback:
+      'Kavushion criou um site leve, moderno e funcional pra minha startup. Atendimento ótimo e prazos cumpridos certinho.',
+    rating: 5,
+    image: '/services/image.png',
+    language: 'pt',
+    countryCode: 'pt',
+  },
+  {
+    name: 'Sophie Dubois',
+    role: 'Brand Strategist',
+    feedback:
+      "J'ai eu une super expérience avec Kavushion. Le site est fluide, bien pensé, et l'équipe a été très réactive à mes besoins.",
+    rating: 5,
+    image: '/services/image.png',
+    language: 'fr',
+    countryCode: 'fr',
+  },
+];
+
+
 
   const [startIndex, setStartIndex] = useState(0);
   const visibleCards = 3;
@@ -125,8 +107,8 @@ export default function TestimonialSection() {
   
   const swiperRef = useRef(null);
   return (
-    <div className="flex flex-col items-center py-12">
-      <div className="flex justify-between items-center mb-6">
+    <div className="flex flex-col items-center  py-12">
+      <div className="flex px-[7%] justify-between items-center mb-6">
         <div>
           <h2 className="text-3xl font-bold">{t('title')}</h2>
           <p className="text-gray-600 mt-2 max-w-md">
@@ -150,7 +132,7 @@ export default function TestimonialSection() {
         </div>
       </div>
 
-      <div className="w-full  px-4 flex justify-center">
+      <div className="w-full   flex justify-center">
       <Swiper
         onSwiper={(swiper) => (swiperRef.current = swiper)}
         effect="coverflow"
@@ -184,8 +166,8 @@ export default function TestimonialSection() {
     {/* Flag di pojok kanan atas */}
     <div className="absolute top-4 right-4 w-6 h-4 rounded-sm overflow-hidden shadow-md">
       <img
-        src={`/flags/${t.language}.svg`} // Contoh: en.svg, id.svg, jp.svg
-        alt={t.language}
+        src={`/flags/${t.countryCode}.svg`} // Contoh: en.svg, id.svg, jp.svg
+        alt={t.countryCode}
         className="object-cover w-full h-full"
       />
     </div>

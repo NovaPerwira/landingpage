@@ -74,7 +74,7 @@ const featureKeys = ["1", "2", "3"];
 
               {/* People Image */}
               <Image
-                src="/images/people.png"
+                src="/people.webp"
                 alt="Business Professional"
                 width={400}
                 height={600}

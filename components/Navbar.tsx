@@ -23,7 +23,7 @@ export default function Navbar() {
     { label: 'Home', href: '/' },
     { label: 'Portfolio', href: '/portfolio' },
     { label: 'Services', href: '/services' },
-    { label: 'Blog', href: '/blog' },
+    // { label: 'Blog', href: '/blog' },
   ]
 
   const [activeIndex, setActiveIndex] = useState(0)
@@ -52,11 +52,11 @@ export default function Navbar() {
         <div className="flex items-center justify-between w-[95%] md:w-[92%] lg:w-[90%] mx-auto h-16 sm:h-20 md:h-24">
           {/* Logo */}
           <Image
-            src="/logo kavushion.svg"
+            src="/full logo kavushion.svg"
             alt="Logo"
-            width={80}
-            height={80}
-            className="w-[50px] sm:w-[65px] md:w-[70px]"
+            width={200}
+            height={200}
+             className="w-[120px] h-[120px] sm:w-[70px] sm:h-[70px] xl:w-36 xl:h-36"
           />
 
           {/* Desktop Nav */}
