@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://kavushion.vercel.app
+
+# Sitemaps
+Sitemap: https://kavushion.vercel.app/sitemap.xml
