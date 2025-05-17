@@ -153,6 +153,7 @@ export default function Home() {
           __html: JSON.stringify(data[locale as 'en' | 'id' | 'jp']),
         }}
       />
+      <meta name="google-site-verification" content="bRKYMdRNGW2JiXqf-Nu8aKqlDyBHohRVt3JRou1na5c" />
     </Head>
 
       <div className="flex flex-col bg-[#F2F2F2]">
